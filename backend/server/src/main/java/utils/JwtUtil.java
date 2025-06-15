@@ -17,11 +17,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
     private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
-    // TODO: URGENT - Move to environment variable!
     @Value("${jwt.secret}")
     private String SECRET_KEY;
-//    private final String SECRET_KEY = System.getenv("JWT_SECRET") != null ?
-//            System.getenv("JWT_SECRET") : "CHANGE_THIS_IMMEDIATELY_IN_PRODUCTION";
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
 
     public String extractUsername(String token) {

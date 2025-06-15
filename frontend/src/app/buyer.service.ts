@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Product } from './models/product';
 import { Seller } from './models/seller';
+import { CartItemDTO } from './models/cart-item-dto';
 
 @Injectable({ providedIn: 'root' })
 export class BuyerService {
@@ -83,5 +84,14 @@ export class BuyerService {
 
   unblockSeller(sellerId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/unblock-seller?sellerId=${sellerId}`, {}, { responseType: 'text' });
+  }
+
+  /**
+   * Calculate the total price of the items currently in the cart.
+   * Keeping this logic here (instead of in components) centralises
+   * business rules and eases unit-testing.
+   */
+  calculateCartTotal(items: CartItemDTO[]): number {
+    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
 }

@@ -1,6 +1,5 @@
 package server;
 
-import org.apache.catalina.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +18,6 @@ public class ServerApplication {
     }
 
 
-    // todo - remove this bean if error occurs
     @Bean
     public JwtUtil jwtUtil() {
         return new JwtUtil();

@@ -7,7 +7,6 @@ import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import persistance.UserRepository;
 import utils.JwtUtil;
 import service.SellerService;
 
@@ -18,15 +17,13 @@ import java.util.List;
 @RequestMapping("/api/seller")
 public class SellerController {
 
-    private final UserRepository userRepository;
     private final SellerService sellerService;
 
     @Autowired
     private JwtUtil jwtUtil;
 
     @Autowired
-    public SellerController(UserRepository userRepository, SellerService sellerService) {
-        this.userRepository = userRepository;
+    public SellerController(SellerService sellerService) {
         this.sellerService = sellerService;
     }
 
@@ -36,7 +33,7 @@ public class SellerController {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             String username = jwtUtil.extractUsername(token);
-            return userRepository.findByUsername(username);
+            return sellerService.getSeller(username);
         }
         return null;
     }

@@ -105,4 +105,12 @@ public class BuyerService {
         cartRepository.clearCart(buyer.getId());
 
     }
+
+    /**
+     * Resolve a buyer entity by username. Returns null if the user does not exist or is not a Buyer.
+     */
+    public Buyer getBuyer(String username) {
+        User user = userRepository.findByUsername(username);
+        return (user instanceof Buyer) ? (Buyer) user : null;
+    }
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.BuyerService;
-import persistance.UserRepository;
 import utils.JwtUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,14 +16,12 @@ import java.util.List;
 @RequestMapping("/api/buyer")
 public class BuyerController {
     private final BuyerService buyerService;
-    private final UserRepository userRepository;
     @Autowired
     private JwtUtil jwtUtil;
 
     @Autowired
-    public BuyerController(BuyerService buyerService, UserRepository userRepository) {
+    public BuyerController(BuyerService buyerService) {
         this.buyerService = buyerService;
-        this.userRepository = userRepository;
     }
 
     private Buyer getAuthenticatedBuyer(HttpServletRequest request) {
@@ -32,8 +29,8 @@ public class BuyerController {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             String username = jwtUtil.extractUsername(token);
-            User user = userRepository.findByUsername(username);
-            if (user instanceof Buyer) return (Buyer) user;
+            Buyer buyer = buyerService.getBuyer(username);
+            if (buyer != null) return buyer;
         }
         return null;
     }

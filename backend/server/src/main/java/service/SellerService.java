@@ -51,4 +51,12 @@ public class SellerService {
         productRepository.edit(existing);
         return existing;
     }
+
+    /**
+     * Resolve a seller entity by username. Returns null if the user does not exist or is not a Seller.
+     */
+    public User getSeller(String username) {
+        User user = userRepository.findByUsername(username);
+        return (user instanceof model.Seller) ? user : null;
+    }
 }
