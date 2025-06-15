@@ -1,0 +1,6 @@
+rootProject.name = 'emag'
+include 'model'
+include 'server'
+include 'fxClient'
+include 'persistance'
+include 'services'

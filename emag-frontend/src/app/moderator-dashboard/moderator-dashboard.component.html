@@ -1,0 +1,66 @@
+<div class="dashboard-container">
+  <h2>Moderator Dashboard</h2>
+
+  <button (click)="logout()" class="logout-btn" style="float:right;margin-bottom:1rem;">Logout</button>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- Sellers List -->
+  <table class="product-table" *ngIf="sellers.length">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seller of sellers">
+        <td>{{ seller.username }}</td>
+        <td>{{ seller.email }}</td>
+        <td>{{ seller.blocked ? 'Blocked' : 'Active' }}
+          <button (click)="blockOrUnblockSeller(seller)" class="block-btn" style="margin-left:1rem;">
+            {{ seller.blocked ? 'Unblock' : 'Block' }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!sellers.length && !loading">No sellers found.</div>
+
+  <!-- Edit Categories Section -->
+  <div class="edit-categories-container" style="margin-top:2rem;">
+    <h2>Edit Categories</h2>
+    <div *ngIf="categoryLoading" class="loading">Loading categories...</div>
+    <div *ngIf="categoryError" class="error">{{ categoryError }}</div>
+    <form (ngSubmit)="createCategory()" style="margin-bottom:1rem;display:flex;gap:1rem;align-items:center;">
+      <input [(ngModel)]="newCategoryName" name="newCategoryName" placeholder="New category name" required style="padding:0.5rem;" />
+      <button type="submit" [disabled]="categoryLoading || !newCategoryName">Add Category</button>
+    </form>
+    <table class="product-table" *ngIf="categories.length">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.id }}</td>
+          <td *ngIf="editCategoryId !== category.id">{{ category.name }}</td>
+          <td *ngIf="editCategoryId === category.id">
+            <input [(ngModel)]="editCategoryName" name="editCategoryName{{category.id}}" required style="padding:0.3rem;" />
+          </td>
+          <td>
+            <button *ngIf="editCategoryId !== category.id" (click)="startEditCategory(category)">Edit</button>
+            <button *ngIf="editCategoryId === category.id" (click)="saveEditCategory()" [disabled]="categoryLoading || !editCategoryName">Save</button>
+            <button *ngIf="editCategoryId === category.id" (click)="cancelEditCategory()">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="!categories.length && !categoryLoading">No categories found.</div>
+  </div>
+</div>

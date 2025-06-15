@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Add this style to make the product table scrollable with a max height */
+.product-table-container {
+  max-height: 300px;
+  overflow-y: auto;
+  display: block;
+  position: relative;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.product-table th {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+
+.product-table th, .product-table td {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-form {
+  margin-bottom: 24px;
+}

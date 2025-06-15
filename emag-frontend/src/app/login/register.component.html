@@ -1,0 +1,17 @@
+<h2>Register</h2>
+<form (ngSubmit)="onRegister()" #registerForm="ngForm">
+  <label for="username">Username:</label>
+  <input id="username" name="username" [(ngModel)]="username" required />
+  <label for="password">Password:</label>
+  <input id="password" name="password" type="password" [(ngModel)]="password" required />
+  <label for="role">Role:</label>
+  <select id="role" name="role" [(ngModel)]="role" required>
+    <option value="" disabled selected>Select your role</option>
+    <option value="BUYER">Buyer</option>
+    <option value="SELLER">Seller</option>
+    <option value="MODERATOR">Moderator</option>
+  </select>
+  <button type="submit">Register</button>
+  <div *ngIf="error" style="color:red">{{ error }}</div>
+  <div *ngIf="success" style="color:green">{{ success }}</div>
+</form>

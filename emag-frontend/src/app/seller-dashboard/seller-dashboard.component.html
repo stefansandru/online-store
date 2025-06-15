@@ -1,0 +1,69 @@
+<div class="dashboard-container">
+  <h2>Seller Dashboard</h2>
+
+  <button (click)="logout()" class="logout-btn" style="float:right;margin-bottom:1rem;">Logout</button>
+
+  <button (click)="openAddForm()" class="add-btn">Add Product</button>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="showAddForm" class="modal">
+    <form (submit)="submitAdd(addName.value, addDescription.value, addPrice.value, addStock.value, addCategory.value)">
+      <h3>Add Product</h3>
+      <label>Name: <input #addName required /></label>
+      <label>Description: <input #addDescription required /></label>
+      <label>Price: <input type="number" #addPrice required min="0" /></label>
+      <label>Stock: <input type="number" #addStock required min="0" /></label>
+      <label>Category:
+        <select #addCategory required>
+          <option value="" disabled selected>Select category</option>
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+      </label>
+      <button type="submit">Add</button>
+      <button type="button" (click)="closeAddForm()">Cancel</button>
+    </form>
+  </div>
+
+  <div *ngIf="showEditForm" class="modal">
+    <form (submit)="submitEdit(editName.value, editDescription.value, editPrice.value, editStock.value)">
+      <h3>Edit Product</h3>
+      <label>Name: <input #editName [value]="selectedProduct?.name" required /></label>
+      <label>Description: <input #editDescription [value]="selectedProduct?.description" required /></label>
+      <label>Price: <input type="number" #editPrice [value]="selectedProduct?.price" required min="0" /></label>
+      <label>Stock: <input type="number" #editStock [value]="selectedProduct?.stock" required min="0" /></label>
+      <button type="submit">Save</button>
+      <button type="button" (click)="closeEditForm()">Cancel</button>
+    </form>
+  </div>
+
+  <table class="product-table" *ngIf="products.length">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price | currency }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+          <button (click)="openEditForm(product)">Edit</button>
+          <button (click)="deleteProduct(product)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!products.length && !loading">No products found.</div>
+
+  <button (click)="submitAdd('test','desc','1','1','1')">Test Add (Direct Call)</button>
+
+  <button (click)="selectedProduct = products[0]; submitEdit('edited','desc','2','2')">Test Edit (Direct Call)</button>
+</div>

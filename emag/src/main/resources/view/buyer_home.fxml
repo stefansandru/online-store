@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ro.emag.ui.BuyerHomeController"
+      alignment="CENTER"
+      spacing="20"
+      style="-fx-padding: 50;">
+    <Label text="Buyer Home"
+           style="-fx-font-size: 32px;"/>
+    <Label fx:id="welcomeLabel" style="-fx-font-size: 16px;"/>
+</VBox>

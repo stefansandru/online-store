@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ro.emag.ui.LoginController"
+      alignment="CENTER"
+      spacing="15"
+      style="-fx-padding: 30; -fx-background-color: #f6f7fb; -fx-border-radius: 12; -fx-background-radius: 12;">
+
+    <Label text="Login"
+           style="-fx-font-size: 28px; -fx-font-family: 'Arial Rounded MT Bold', Arial, sans-serif; -fx-text-fill: #263159;" />
+    <TextField fx:id="usernameField"
+           promptText="Username"
+           style="-fx-pref-width: 240px; -fx-max-width: 240px; -fx-background-radius: 6;"/>
+    <PasswordField fx:id="passwordField"
+               promptText="Password"
+               style="-fx-pref-width: 240px; -fx-max-width: 240px; -fx-background-radius: 6;"/>
+    <TextField fx:id="emailField"
+               promptText="Email"
+               style="-fx-pref-width: 240px; -fx-max-width: 240px; -fx-background-radius: 6;"/>
+    <ComboBox fx:id="roleComboBox"
+          style="-fx-pref-width: 240px; -fx-background-radius: 6;"/>
+    <Label fx:id="messageLabel"
+           textFill="#ee3c3c"
+           style="-fx-font-size: 13px;"/>
+    <Button text="Login"
+        onAction="#handleLogin"
+        style="-fx-pref-width: 240px; -fx-background-color: #435dff; -fx-text-fill: white; -fx-background-radius: 6; -fx-font-size: 15px;"/>
+    <Button text="Register"
+        onAction="#handleRegister"
+        style="-fx-pref-width: 240px; -fx-background-color: #435dff; -fx-text-fill: white; -fx-background-radius: 6; -fx-font-size: 15px;"/>
+
+</VBox>

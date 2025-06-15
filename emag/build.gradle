@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+group = 'ro.emag'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit for tests
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.jetbrains:annotations:24.0.1'
+    implementation 'com.google.guava:guava:32.1.2-jre'
+
+    // Logging (if you want to keep Log4j)
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
+
+    // JavaFX 17 for Mac (change `classifier` to your OS: 'win', 'linux', or 'mac')
+    implementation group: 'org.openjfx', name: 'javafx-base', version: '17', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: '17', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: '17', classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: '17', classifier: 'mac'
+
+    // Hibernate ORM and JPA
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+    // SQLite JDBC driver
+    runtimeOnly group: 'org.xerial', name: 'sqlite-jdbc', version: '3.45.3.0'
+
+    // Optional: JBoss Logging for Hibernate (prevents log warnings)
+    implementation 'org.jboss.logging:jboss-logging:3.5.0.Final'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ro.emag.Main'
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+javafx {
+    version = "21.0.6"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+application {
+    mainClass = 'ro.emag.Main'
+    applicationDefaultJvmArgs = [
+            '--module-path', '/Users/stefansandru/javafx-sdk-21.0.6/lib',
+            '--add-modules', 'javafx.controls,javafx.fxml'
+    ]
+}
+
+test {
+    useJUnitPlatform()
+}

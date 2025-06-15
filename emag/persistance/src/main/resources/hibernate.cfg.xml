@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">utils.SQLiteDialect</property>
+        <property name="hibernate.connection.driver_class">org.sqlite.JDBC</property>
+        <property name="hibernate.connection.url">jdbc:sqlite:emag.db</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="show_sql">true</property>
+        <property name="hibernate.id.new_generator_mappings">false</property>
+        <property name="hibernate.jdbc.use_get_generated_keys">false</property>
+        <!-- Added for SQLite compatibility -->
+
+        <mapping class="model.User"/>
+        <mapping class="model.Product"/>
+        <mapping class="model.Buyer"/>
+        <mapping class="model.Seller"/>
+        <mapping class="model.Moderator"/>
+        <mapping class="model.CartItem"/>
+        <mapping class="model.Order"/>
+        <mapping class="model.OrderItem"/>
+        <mapping class="model.Category"/>
+    </session-factory>
+</hibernate-configuration>

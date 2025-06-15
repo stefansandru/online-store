@@ -1,0 +1,78 @@
+/* Empty style for buyer dashboard */
+
+body, .dashboard-container {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.dashboard-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.product-table th, .product-table td {
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+.product-table th {
+  background: #f5f5f5;
+}
+.loading {
+  color: #1976d2;
+  font-weight: bold;
+}
+.error {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.cart-table th, .cart-table td {
+  border: 1px solid #eee;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+.cart-table th {
+  background: #f5f5f5;
+}
+.cart-total {
+  text-align: right;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+button, .add-btn {
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 1rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 3px rgba(25, 118, 210, 0.08);
+}
+button:hover, .add-btn:hover {
+  background: #1565c0;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+button:active, .add-btn:active {
+  background: #0d47a1;
+}
+button:disabled, .add-btn:disabled {
+  background: #bdbdbd;
+  color: #fff;
+  cursor: not-allowed;
+  box-shadow: none;
+}
