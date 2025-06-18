@@ -38,11 +38,8 @@ public class BuyerController {
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
         System.out.println("Getting all products");
-        List<ProductDTO> productDTOS = buyerService.getAllProducts();
-        for (ProductDTO product : productDTOS) {
-            System.out.println("Product: " + product.getName() + " - " + product.getPrice());
-        }
-        return ResponseEntity.ok(productDTOS);
+        List<ProductDTO> productDTOs = buyerService.getAllProducts();
+        return ResponseEntity.ok(productDTOs);
     }
 
     @GetMapping("/products/filter")
