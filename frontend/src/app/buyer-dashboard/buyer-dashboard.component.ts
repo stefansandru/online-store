@@ -56,8 +56,6 @@ export class BuyerDashboardComponent implements OnInit {
   loadProducts() {
   this.buyerService.getAllProducts().subscribe({
     next: (products) => {
-      console.log('Products loaded successfully:');
-      console.log(products);
       this.products = products;
     },
     error: (err) => {
@@ -94,8 +92,16 @@ export class BuyerDashboardComponent implements OnInit {
 
   searchProducts() {
     this.loading = true;
-    // this.products = this.buyerService.filterProducts(this.searchName, this.selectedCategory);
-    this.loading = false;
+    this.buyerService.filterProducts(this.searchName, this.selectedCategory).subscribe({
+      next: (products) => {
+        this.products = products;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to search products.';
+        this.loading = false;
+      }
+    });
   }
 
   addToCart(product: Product, quantity: number) {

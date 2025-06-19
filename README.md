@@ -73,3 +73,19 @@ sqlite3 backend/emag.db
 SELECT * FROM product LIMIT 5;
 ```
 Feel free to replace the data source in `backend/server/src/main/resources/application.properties` to use PostgreSQL or MySQL.
+
+---
+
+## Test Users
+
+| Username | Password | Role      | Status  |
+|----------|----------|-----------|---------|
+| ana      | ana      | BUYER     | ACTIVE  |
+| adi      | adi      | SELLER    | ACTIVE  |
+| dan      | dan      | SELLER    | ACTIVE  |
+| mimi     | mimi     | BUYER     | ACTIVE  |
+| ion      | ion      | MODERATOR | ACTIVE  |
+
+> The password for each account is the same as the username.
+
+*Use these accounts to log in and test the application.*
