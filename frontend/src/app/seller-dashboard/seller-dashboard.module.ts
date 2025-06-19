@@ -4,8 +4,8 @@ import { SellerDashboardComponent } from './seller-dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SellerDashboardComponent],
-  imports: [CommonModule, ReactiveFormsModule],
-  exports: [SellerDashboardComponent]
+    declarations: [SellerDashboardComponent],
+    imports: [CommonModule, ReactiveFormsModule],
+    exports: [SellerDashboardComponent],
 })
 export class SellerDashboardModule {}

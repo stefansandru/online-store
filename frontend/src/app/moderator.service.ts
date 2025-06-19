@@ -6,31 +6,43 @@ import { Seller } from './models/seller';
 
 @Injectable({ providedIn: 'root' })
 export class ModeratorService {
-  private apiUrl = 'http://localhost:8080/api/moderator';
+    private apiUrl = 'http://localhost:8080/api/moderator';
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  getAllSellers(): Observable<Seller[]> {
-    return this.http.get<Seller[]>(`${this.apiUrl}/users`);
-  }
+    getAllSellers(): Observable<Seller[]> {
+        return this.http.get<Seller[]>(`${this.apiUrl}/users`);
+    }
 
-  blockSeller(sellerId: number): Observable<string> {
-    return this.http.post(`${this.apiUrl}/block-seller`, null, { params: { sellerId }, responseType: 'text' });
-  }
+    blockSeller(sellerId: number): Observable<string> {
+        return this.http.post(`${this.apiUrl}/block-seller`, null, {
+            params: { sellerId },
+            responseType: 'text',
+        });
+    }
 
-  unblockSeller(sellerId: number): Observable<string> {
-    return this.http.post(`${this.apiUrl}/unblock-seller`, null, { params: { sellerId }, responseType: 'text' });
-  }
+    unblockSeller(sellerId: number): Observable<string> {
+        return this.http.post(`${this.apiUrl}/unblock-seller`, null, {
+            params: { sellerId },
+            responseType: 'text',
+        });
+    }
 
-  getAllCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`);
-  }
+    getAllCategories(): Observable<Category[]> {
+        return this.http.get<Category[]>(`${this.apiUrl}/categories`);
+    }
 
-  createCategory(categoryName: string): Observable<string> {
-    return this.http.post(`${this.apiUrl}/create-category`, null, { params: { categoryName }, responseType: 'text' });
-  }
+    createCategory(categoryName: string): Observable<string> {
+        return this.http.post(`${this.apiUrl}/create-category`, null, {
+            params: { categoryName },
+            responseType: 'text',
+        });
+    }
 
-  editCategory(id: number, newName: string): Observable<string> {
-    return this.http.put(`${this.apiUrl}/edit-category/${id}`, null, { params: { newName }, responseType: 'text' });
-  }
+    editCategory(id: number, newName: string): Observable<string> {
+        return this.http.put(`${this.apiUrl}/edit-category/${id}`, null, {
+            params: { newName },
+            responseType: 'text',
+        });
+    }
 }

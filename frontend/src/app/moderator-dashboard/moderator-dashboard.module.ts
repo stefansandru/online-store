@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ModeratorDashboardComponent } from './moderator-dashboard.component';
 
 @NgModule({
-  declarations: [ModeratorDashboardComponent],
-  imports: [CommonModule, FormsModule],
-  exports: [ModeratorDashboardComponent]
+    declarations: [ModeratorDashboardComponent],
+    imports: [CommonModule, FormsModule],
+    exports: [ModeratorDashboardComponent],
 })
 export class ModeratorDashboardModule {}
