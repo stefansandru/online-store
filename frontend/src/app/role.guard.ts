@@ -1,4 +1,3 @@
-// Auth guard for role-based route protection
 import { Injectable } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';

@@ -1,4 +1,3 @@
-// JWT Interceptor to attach token to requests
 import { Injectable } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
 

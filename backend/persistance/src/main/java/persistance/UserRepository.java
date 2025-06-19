@@ -39,6 +39,9 @@ public class UserRepository {
             session.beginTransaction();
             session.persist(user);
             session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 

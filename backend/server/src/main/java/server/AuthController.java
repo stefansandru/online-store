@@ -44,10 +44,11 @@ public class AuthController {
 
         if (authService.register(username, password, role)) {
             logger.info("User registered successfully: {}", username);
-            return ResponseEntity.ok("User registered successfully");
+            String token = authService.login(username, password);
+            return ResponseEntity.ok(Map.of("token", token));
         } else {
-            logger.warn("Registration failed for user: {}", username);
-            return ResponseEntity.status(400).body("Registration failed");
+            logger.warn("Username already exists: {}", username);
+            return ResponseEntity.status(400).build();
         }
     }
 

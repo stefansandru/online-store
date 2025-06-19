@@ -1,9 +1,8 @@
-// Authentication service for login, JWT storage, and user role management
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -19,8 +18,6 @@ export class AuthService {
       tap(res => {
         if (res.token) {
           sessionStorage.setItem(this.tokenKey, res.token);
-          // Optionally decode token to get role, here we just store a placeholder
-          // In real app, decode JWT to get role
           sessionStorage.setItem(this.roleKey, this.getRoleFromToken(res.token));
         }
       })
@@ -34,7 +31,14 @@ export class AuthService {
   }
 
   register(username: string, password: string, role: string): Observable<any> {
-    return this.http.post<any>(this.registerUrl, { username, password, role });
+    return this.http.post<any>(this.registerUrl, { username, password, role }).pipe(
+      tap(res => {
+        if (res.token) {
+          sessionStorage.setItem(this.tokenKey, res.token);
+          sessionStorage.setItem(this.roleKey, this.getRoleFromToken(res.token));
+        }
+      })
+    );
   }
 
   getToken(): string | null {
@@ -49,17 +53,14 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  // Decode JWT and extract role
   private getRoleFromToken(token: string): string {
     try {
-      // JWT format: header.payload.signature
       const payload = token.split('.')[1];
       const decoded = JSON.parse(atob(payload));
-      // Adjust the key according to your JWT structure, e.g., 'role', 'roles', or 'authorities'
       if (decoded.role) {
         return decoded.role;
       } else if (decoded.roles && Array.isArray(decoded.roles)) {
-        return decoded.roles[0]; // or handle multiple roles as needed
+        return decoded.roles[0];
       } else if (decoded.authorities && Array.isArray(decoded.authorities)) {
         return decoded.authorities[0];
       }

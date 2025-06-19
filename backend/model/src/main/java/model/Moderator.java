@@ -15,6 +15,6 @@ public class Moderator extends User {
     }
 
     public Moderator(String username, String email, String passwordHash) {
-        super(-1, username, passwordHash, email, AccountStatus.ACTIVE);
+        super(0, username, passwordHash, email, AccountStatus.ACTIVE);
     }
 }

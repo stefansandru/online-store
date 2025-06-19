@@ -20,7 +20,9 @@ public class AuthService {
     }
 
     public String login(String username, String password) {
+        System.out.println(username);
         User user = userRepository.findByUsername(username);
+        System.out.println("User found: " + (user != null ? user.getUsername() : "null"));
         if (user != null && PasswordUtils.verifyPassword(password, user.getPasswordHash())) {
             String role = user.getClass().getSimpleName().toUpperCase();
             return jwtUtil.generateToken(user, role);
@@ -34,7 +36,7 @@ public class AuthService {
 
     public boolean register(String username, String password, String role) {
         if (userRepository.findByUsername(username) != null) {
-            return false; // User already exists
+            return false;
         }
 
         String passwordHash = PasswordUtils.hashPassword(password);
@@ -55,7 +57,7 @@ public class AuthService {
                 return false;
         }
 
-        System.out.println("Registering user: " + username + " with role: " + role);
+        System.out.println("Registering user: " + username + " with role: " + role + " id: " + user.getId());
         System.out.println("Password hash: " + passwordHash);
         userRepository.save(user);
         return true;

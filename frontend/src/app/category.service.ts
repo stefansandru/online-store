@@ -12,12 +12,4 @@ export class CategoryService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.apiUrl);
   }
-
-  // createCategory(categoryName: string) {
-  //   return this.http.get(`${this.apiUrl}/create-category`, { params: { categoryName }, responseType: 'text' });
-  // }
-
-  // editCategory(id: number, newName: string) {
-  //   return this.http.put(`${this.apiUrl}/edit-category/${id}`, null, { params: { newName }, responseType: 'text' });
-  // }
 }

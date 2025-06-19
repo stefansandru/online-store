@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CategoryService } from '../category.service';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
-import { CartItemDTO } from '../models/cart-item-dto';
+import { CartItem } from '../models/cart-item';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class BuyerDashboardComponent implements OnInit {
   error: string | null = null;
   searchName: string = '';
   selectedCategory: string = '';
-  cartItems: CartItemDTO[] = [];
+  cartItems: CartItem[] = [];
   selectedQuantities: { [productId: number]: number } = {};
 
   constructor(
@@ -38,35 +38,20 @@ export class BuyerDashboardComponent implements OnInit {
     this.loadCartItems();
   }
 
-  // loadProducts() {
-  //   // this.loading = true;
-    
-  //   console.log(this.buyerService.getAllProducts());
-  //   // this.buyerService.getAllProducts().subscribe({
-  //   //   next: (products) => {
-  //   //     this.products = products;
-  //   //     // this.loading = false;
-  //   //   },
-  //   //   error: (err) => {
-  //   //     this.error = 'Failed to load products.';
-  //   //     // this.loading = false;
-  //   //   },
-  //   // });
-  // }
   loadProducts() {
-  this.buyerService.getAllProducts().subscribe({
-    next: (products) => {
-      this.products = products;
-    },
-    error: (err) => {
-      console.error('Failed to load products:', err);
-    },
-    complete: () => {
-      console.log('Product loading completed');
-    }
-  });
-}
-  
+    this.buyerService.getAllProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+      },
+      error: (err) => {
+        console.error('Failed to load products:', err);
+      },
+      complete: () => {
+        console.log('Product loading completed');
+      }
+    });
+  }
+
   loadCategories() {
     this.categoryService.getCategories().subscribe({
       next: (categories) => {
@@ -112,7 +97,6 @@ export class BuyerDashboardComponent implements OnInit {
         this.error = null;
       },
       error: (err) => {
-        // Only show error if cart was not updated
         setTimeout(() => {
           if (!this.cartItems.some(item => item.productId === product.id)) {
             this.error = typeof err === 'string' ? err : 'Failed to add product to cart.';
@@ -124,7 +108,7 @@ export class BuyerDashboardComponent implements OnInit {
     });
   }
 
-  removeFromCart(item: CartItemDTO) {
+  removeFromCart(item: CartItem) {
     this.buyerService.removeProductFromCart(item.productId).subscribe({
       next: () => {
         this.loadCartItems();

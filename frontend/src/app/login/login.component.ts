@@ -22,7 +22,6 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
-        // Redirect based on role
         const role = this.authService.getRole();
         if (role === 'SELLER') this.router.navigate(['/seller']);
         else if (role === 'BUYER') this.router.navigate(['/buyer']);

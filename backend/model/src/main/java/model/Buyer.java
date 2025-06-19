@@ -26,11 +26,11 @@ public class Buyer extends User {
     }
 
     public Buyer(String username, String passwordHash, String email, AccountStatus accountStatus) {
-        super(-1, username, passwordHash, email, accountStatus);
+        super(0, username, passwordHash, email, accountStatus);
     }
 
     public Buyer(String username, String email, String passwordHash) {
-        super(-1, username, passwordHash, email, AccountStatus.ACTIVE);
+        super(0, username, passwordHash, email, AccountStatus.ACTIVE);
     }
 
     public List<CartItem> getCartItems() {

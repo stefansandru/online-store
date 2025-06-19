@@ -43,7 +43,7 @@ public class JwtUtil {
     }
 
     public String generateToken(User user) {
-        // Deprecated: use generateToken(User user, String role) instead
+        // todo: Deprecated: use generateToken(User user, String role) instead
         return generateToken(user, user.getClass().getSimpleName().toUpperCase());
     }
 

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from './models/category';
 import { Seller } from './models/seller';
-// import { User } from './models/user';
 
 @Injectable({ providedIn: 'root' })
 export class ModeratorService {

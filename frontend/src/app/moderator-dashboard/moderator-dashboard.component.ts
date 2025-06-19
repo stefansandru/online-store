@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { ModeratorService } from '../moderator.service';
-import { Seller } from '../models/seller'; // revert to correct path
+import { Seller } from '../models/seller';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
 
@@ -39,7 +39,6 @@ export class ModeratorDashboardComponent implements OnInit {
     this.loading = true;
     this.moderatorService.getAllSellers().subscribe({
       next: (sellers) => {
-        // Map accountStatus to blocked
         this.sellers = sellers.map(s => ({
           ...s,
           blocked: s.accountStatus === 'BLOCKED'
@@ -65,11 +64,10 @@ export class ModeratorDashboardComponent implements OnInit {
     obs.subscribe({
       next: () => {
         seller.blocked = !seller.blocked;
-        this.error = null; // Clear error on success
+        this.error = null;
       },
       error: (err) => {
         this.error = seller.blocked ? 'Failed to unblock seller.' : 'Failed to block seller.';
-        // Optionally log error for debugging
         console.error('Block/Unblock error:', err);
       },
     });

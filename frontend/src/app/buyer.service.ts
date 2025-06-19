@@ -4,11 +4,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Product } from './models/product';
 import { Seller } from './models/seller';
-import { CartItemDTO } from './models/cart-item-dto';
+import { CartItem } from './models/cart-item';
 
 @Injectable({ providedIn: 'root' })
 export class BuyerService {
-  private apiUrl = 'http://localhost:8080/api/buyer'; 
+  private apiUrl = 'http://localhost:8080/api/buyer';
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +42,6 @@ export class BuyerService {
       }
     ).pipe(
       catchError((error) => {
-        // Pass backend error message to component
         return throwError(() => error.error || 'An error occurred');
       })
     );
@@ -86,12 +85,7 @@ export class BuyerService {
     return this.http.post(`${this.apiUrl}/unblock-seller?sellerId=${sellerId}`, {}, { responseType: 'text' });
   }
 
-  /**
-   * Calculate the total price of the items currently in the cart.
-   * Keeping this logic here (instead of in components) centralises
-   * business rules and eases unit-testing.
-   */
-  calculateCartTotal(items: CartItemDTO[]): number {
+  calculateCartTotal(items: CartItem[]): number {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   }
 }

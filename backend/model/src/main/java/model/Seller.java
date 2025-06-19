@@ -17,10 +17,10 @@ public class Seller extends User {
     }
 
     public Seller(String username, String passwordHash, String email, AccountStatus accountStatus) {
-        super(-1, username, passwordHash, email, accountStatus);
+        super(0, username, passwordHash, email, accountStatus);
     }
 
     public Seller(String username, String email, String passwordHash) {
-        super(-1, username, passwordHash, email, AccountStatus.ACTIVE);
+        super(0, username, passwordHash, email, AccountStatus.ACTIVE);
     }
 }

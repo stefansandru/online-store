@@ -15,19 +15,21 @@ export class RegisterComponent {
   username = '';
   password = '';
   role = '';
-  error = '';
-  success = '';
+  message = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
     this.authService.register(this.username, this.password, this.role).subscribe({
       next: () => {
-        this.success = 'Registration successful!';
-        setTimeout(() => this.router.navigate(['/login']), 1500);
+        const role = this.authService.getRole();
+        if (role === 'SELLER') this.router.navigate(['/seller']);
+        else if (role === 'BUYER') this.router.navigate(['/buyer']);
+        else if (role === 'MODERATOR') this.router.navigate(['/moderator']);
+        else this.router.navigate(['/login']);
       },
       error: () => {
-        this.error = 'Registration failed';
+        this.message = 'Username already exists';
       }
     });
   }

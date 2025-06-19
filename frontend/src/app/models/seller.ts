@@ -3,5 +3,5 @@ export interface Seller {
   username: string;
   email: string;
   blocked: boolean;
-  accountStatus?: string; // Add this to accept backend property
+  accountStatus?: string;
 }

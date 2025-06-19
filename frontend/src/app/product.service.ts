@@ -13,7 +13,7 @@ export interface ProductCreateDTO {
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/api/seller/products'; // changed to fetch all products for buyer
+  private apiUrl = 'http://localhost:8080/api/seller/products';
 
   constructor(private http: HttpClient) {}
 
