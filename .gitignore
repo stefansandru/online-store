@@ -36,3 +36,14 @@ coverage/
 
 # Swap files
 *.swp
+
+# Gradle
+.gradle/
+
+# Angular/Vite cache
+.angular/cache/
+
+# Vite deps
+vite/deps/
+# Pentru structura ta, excludem și deps din subfolderele .angular/cache
+.angular/cache/**/vite/deps/
