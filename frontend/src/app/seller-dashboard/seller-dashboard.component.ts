@@ -11,7 +11,7 @@ export interface ProductCreateDTO {
     description: string;
     price: number;
     stock: number;
-    category: { id: number };
+    categoryName: string;
 }
 
 @Component({
@@ -67,26 +67,25 @@ export class SellerDashboardComponent implements OnInit {
     }
 
     submitAdd(
+        event: Event,
         name: string,
         description: string,
         price: string,
         stock: string,
         categoryId: string,
     ) {
-        console.log('submitAdd called with:', {
-            name,
-            description,
-            price,
-            stock,
-            categoryId,
-        });
+        event.preventDefault();
         if (!name || !description || !price || !stock || !categoryId) return;
+        const selectedCategory = this.categories.find(
+            (cat) => cat.id === Number(categoryId),
+        );
+        if (!selectedCategory) return;
         const product: ProductCreateDTO = {
             name,
             description,
             price: Number(price),
             stock: Number(stock),
-            category: { id: Number(categoryId) },
+            categoryName: selectedCategory.name,
         };
         this.productService.addProduct(product).subscribe({
             next: (product) => {

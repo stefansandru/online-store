@@ -43,7 +43,7 @@ public class BuyerController {
     }
 
     @GetMapping("/products/filter")
-    public ResponseEntity<List<Product>> filterProducts(@RequestParam(required = false) String name, @RequestParam(required = false) String category) {
+    public ResponseEntity<List<ProductDTO>> filterProducts(@RequestParam(required = false) String name, @RequestParam(required = false) String category) {
         return ResponseEntity.ok(buyerService.filterProducts(name, category));
     }
 
@@ -51,21 +51,7 @@ public class BuyerController {
     public ResponseEntity<List<CartItemDTO>> getCartItems(HttpServletRequest request) {
         Buyer buyer = getAuthenticatedBuyer(request);
         if (buyer == null) return ResponseEntity.status(401).build();
-        List<CartItem> cartItems = buyerService.getCartItems(buyer);
-
-        List<CartItemDTO> cartItemDTOs = cartItems.stream()
-            .map(item -> {
-                CartItemDTO dto = new CartItemDTO();
-                dto.setId(item.getId());
-                dto.setProductId(item.getProduct().getId());
-                dto.setProductName(item.getProduct().getName());
-                dto.setQuantity(item.getQuantity());
-                dto.setPrice(item.getProduct().getPrice());
-                return dto;
-            })
-            .toList();
-
-        return ResponseEntity.ok(cartItemDTOs);
+        return ResponseEntity.ok(buyerService.getCartItems(buyer));
     }
 
     @PostMapping("/cart/add")
@@ -73,10 +59,7 @@ public class BuyerController {
         System.out.println("Adding product to cart: " + productId + " x " + quantity);
         Buyer buyer = getAuthenticatedBuyer(request);
         if (buyer == null) return ResponseEntity.status(401).build();
-        List<CartItem> cart = buyerService.addProductToCart(buyer, productId, quantity);
-        for (CartItem item : cart) {
-            System.out.println("Cart item: " + item.getProduct().getName() + " x " + item.getQuantity());
-        }
+        buyerService.addProductToCart(buyer, productId, quantity);
         return ResponseEntity.ok().build();
     }
 
@@ -84,7 +67,7 @@ public class BuyerController {
     public ResponseEntity<?> removeProductFromCart(@RequestParam int productId, HttpServletRequest request) {
         Buyer buyer = getAuthenticatedBuyer(request);
         if (buyer == null) return ResponseEntity.status(401).build();
-        List<CartItem> cart = buyerService.removeProductFromCart(buyer, productId);
+        buyerService.removeProductFromCart(buyer, productId);
         return ResponseEntity.ok().build();
     }
 

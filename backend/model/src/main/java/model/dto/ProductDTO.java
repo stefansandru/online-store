@@ -1,11 +1,25 @@
 package model.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.PositiveOrZero;
+
 public class ProductDTO {
     private int id;
+    @NotBlank
+    @Size(max = 100)
     private String name;
+    @NotBlank
+    @Size(max = 255)
     private String description;
+    @NotNull
+    @PositiveOrZero
     private Double price;
+    @NotNull
+    @PositiveOrZero
     private Integer stock;
+    @NotBlank
     private String categoryName;
 
     // getters and setters
@@ -47,4 +61,15 @@ public class ProductDTO {
         this.categoryName = categoryName;
     }
 
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", categoryName='" + categoryName + '\'' +
+                '}';
+    }
 }

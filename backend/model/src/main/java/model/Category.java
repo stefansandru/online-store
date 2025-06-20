@@ -23,6 +23,12 @@ public class Category {
         this.description = description;
     }
 
+    public Category(String categoryName) {
+        this.id = 0;
+        this.name = categoryName;
+        this.description = null;
+    }
+
     /* getters / setters */
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

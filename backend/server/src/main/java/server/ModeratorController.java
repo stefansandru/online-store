@@ -1,68 +1,56 @@
 package server;
 
-import model.Category;
-import model.Seller;
-import model.User;
+import model.dto.CategoryDTO;
+import model.dto.SellerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.ModeratorService;
-import utils.JwtUtil;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/moderator")
 public class ModeratorController {
-
     private final ModeratorService moderatorService;
-
-    @Autowired
-    private JwtUtil jwtUtil;
 
     @Autowired
     public ModeratorController(ModeratorService moderatorService) {
         this.moderatorService = moderatorService;
     }
 
+    @GetMapping("/users")
+    public ResponseEntity<List<SellerDTO>> getAllSellers() {
+        List<SellerDTO> sellers = moderatorService.getAllSellers();
+        return ResponseEntity.ok(sellers);
+    }
 
-    // Example method to get all users (moderator functionality)
-     @GetMapping("/users")
-     public ResponseEntity<List<Seller>> getAllSellers() {
-         List<Seller> sellers = moderatorService.getAllSellers();
-         return ResponseEntity.ok(sellers);
-     }
-
-    // block a seller
     @PostMapping("/block-seller")
-    public ResponseEntity<String> blockSeller(@RequestParam int sellerId) {
-        User user = moderatorService.blockSeller(sellerId);
-        if (user != null) {
-            return ResponseEntity.ok("Seller blocked successfully");
+    public ResponseEntity<SellerDTO> blockSeller(@RequestParam int sellerId) {
+        SellerDTO seller = moderatorService.blockSeller(sellerId);
+        if (seller != null) {
+            return ResponseEntity.ok(seller);
         } else {
-            return ResponseEntity.status(404).body("Seller not found");
+            return ResponseEntity.status(404).body(null);
         }
     }
 
-    // unblock a seller
     @PostMapping("/unblock-seller")
-    public ResponseEntity<String> unblockSeller(@RequestParam int sellerId) {
-        User user = moderatorService.unblockSeller(sellerId);
-        if (user != null) {
-            return ResponseEntity.ok("Seller unblocked successfully");
+    public ResponseEntity<SellerDTO> unblockSeller(@RequestParam int sellerId) {
+        SellerDTO seller = moderatorService.unblockSeller(sellerId);
+        if (seller != null) {
+            return ResponseEntity.ok(seller);
         } else {
-            return ResponseEntity.status(404).body("Seller not found");
+            return ResponseEntity.status(404).body(null);
         }
     }
 
-    // get all categories
     @GetMapping("/categories")
-    public ResponseEntity<List<Category>> getAllCategories() {
-        List<Category> categories = moderatorService.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+        List<CategoryDTO> categories = moderatorService.getAllCategories();
         return ResponseEntity.ok(categories);
     }
 
-    // crete a new category
     @PostMapping("/create-category")
     public ResponseEntity<String> createCategory(@RequestParam String categoryName) {
         boolean created = moderatorService.createCategory(categoryName);

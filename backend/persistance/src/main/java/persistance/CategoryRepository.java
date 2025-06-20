@@ -61,4 +61,14 @@ public class CategoryRepository {
             return session.get(Category.class, id);
         }
     }
+
+    public Category findByName(String categoryName) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Category> query = session.createQuery(
+                "FROM Category c WHERE c.name = :name", Category.class
+            );
+            query.setParameter("name", categoryName);
+            return query.uniqueResult();
+        }
+    }
 }

@@ -8,7 +8,7 @@ export interface ProductCreateDTO {
     description: string;
     price: number;
     stock: number;
-    category: { id: number };
+    categoryName: string;
 }
 
 @Injectable({ providedIn: 'root' })

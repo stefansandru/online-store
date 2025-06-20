@@ -24,7 +24,6 @@ public class Product {
     private User seller;
 
     public Product() {
-        // Required by Hibernate
     }
 
     public Product(int id, String name, String description, double price, int stock, Category category, User seller) {
@@ -37,7 +36,6 @@ public class Product {
         this.seller = seller;
     }
 
-//    get and set
     public int getId() {
         return id;
     }
@@ -92,5 +90,18 @@ public class Product {
 
     public void setSeller(User seller) {
         this.seller = seller;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", stock=" + stock +
+                ", category=" + (category != null ? category.getName() : "null") +
+                ", seller=" + (seller != null ? seller.getUsername() : "null") +
+                '}';
     }
 }

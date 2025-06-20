@@ -21,6 +21,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

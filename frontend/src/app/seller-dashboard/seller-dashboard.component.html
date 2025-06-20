@@ -18,6 +18,7 @@
         <form
             (submit)="
                 submitAdd(
+                    $event,
                     addName.value,
                     addDescription.value,
                     addPrice.value,
@@ -119,5 +120,4 @@
         </tbody>
     </table>
     <div *ngIf="!products.length && !loading">No products found.</div>
-
 </div>

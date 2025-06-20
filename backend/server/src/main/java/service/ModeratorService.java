@@ -4,47 +4,59 @@ import model.AccountStatus;
 import model.Category;
 import model.Seller;
 import model.User;
+import model.dto.SellerDTO;
+import model.dto.SellerMapper;
+import model.dto.CategoryDTO;
+import model.dto.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import persistance.CategoryRepository;
 import persistance.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ModeratorService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final SellerMapper sellerMapper;
+    private final CategoryMapper categoryMapper;
 
     @Autowired
     public ModeratorService (
             UserRepository userRepository,
-            CategoryRepository categoryRepository) {
+            CategoryRepository categoryRepository,
+            SellerMapper sellerMapper,
+            CategoryMapper categoryMapper) {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
+        this.sellerMapper = sellerMapper;
+        this.categoryMapper = categoryMapper;
     }
 
-
-    public List<Seller> getAllSellers() {
-        return userRepository.getAllSellers();
+    public List<SellerDTO> getAllSellers() {
+        return userRepository.getAllSellers().stream()
+            .map(sellerMapper::toDto)
+            .collect(Collectors.toList());
     }
 
-    public User blockSeller(int sellerId) {
+    public SellerDTO blockSeller(int sellerId) {
         Seller seller = userRepository.findSellerById(sellerId);
         if (seller != null) {
             seller.setAccountStatus(AccountStatus.BLOCKED);
             userRepository.edit(seller);
-            return seller;
+            return sellerMapper.toDto(seller);
         }
         return null;
     }
 
-    public User unblockSeller(int sellerId) {
+    public SellerDTO unblockSeller(int sellerId) {
         Seller seller = userRepository.findSellerById(sellerId);
         if (seller != null) {
             seller.setAccountStatus(AccountStatus.ACTIVE);
             userRepository.edit(seller);
-            return seller;
+            return sellerMapper.toDto(seller);
         }
         return null;
     }
@@ -59,8 +71,10 @@ public class ModeratorService {
         return true;
     }
 
-    public List<Category> getAllCategories() {
-        return categoryRepository.getAll();
+    public List<CategoryDTO> getAllCategories() {
+        return categoryRepository.getAll().stream()
+            .map(categoryMapper::toDto)
+            .collect(Collectors.toList());
     }
 
     public boolean editCategory(int id, String newName) {
