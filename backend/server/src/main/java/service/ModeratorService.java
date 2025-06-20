@@ -7,9 +7,11 @@ import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import persistance.CategoryRepository;
 import persistance.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ModeratorService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
@@ -34,7 +36,7 @@ public class ModeratorService {
             userRepository.edit(seller);
             return seller;
         }
-        return null; // Seller not found
+        return null;
     }
 
     public User unblockSeller(int sellerId) {
@@ -44,17 +46,17 @@ public class ModeratorService {
             userRepository.edit(seller);
             return seller;
         }
-        return null; // Seller not found
+        return null;
     }
 
     public boolean createCategory(String categoryName) {
         if (categoryRepository.existsByName(categoryName)) {
-            return false; // Category already exists
+            return false;
         }
         model.Category category = new model.Category();
         category.setName(categoryName);
         categoryRepository.save(category);
-        return true; // Category created successfully
+        return true;
     }
 
     public List<Category> getAllCategories() {
@@ -64,13 +66,13 @@ public class ModeratorService {
     public boolean editCategory(int id, String newName) {
         Category category = categoryRepository.findById(id);
         if (category == null) {
-            return false; // Category not found
+            return false; 
         }
         if (categoryRepository.existsByName(newName)) {
-            return false; // New name already exists
+            return false;
         }
         category.setName(newName);
         categoryRepository.edit(category);
-        return true; // Category updated successfully
+        return true;
     }
 }

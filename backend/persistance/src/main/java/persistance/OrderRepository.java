@@ -5,12 +5,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import model.Order;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OrderRepository {
     private final SessionFactory sessionFactory;
 
-    public OrderRepository(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public OrderRepository() {
+        this.sessionFactory = persistance.utils.HibernateUtil.getSessionFactory();
     }
 
     public List<Order> getAll() {

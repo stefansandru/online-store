@@ -8,21 +8,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class CartRepository {
-    // This class will handle cart-related operations such as adding items, removing items, and checking out.
-    // It will interact with the database to manage the buyer's cart.
-
     private final SessionFactory sessionFactory;
 
-    public CartRepository(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public CartRepository() {
+        this.sessionFactory = persistance.utils.HibernateUtil.getSessionFactory();
     }
 
-    // Methods for adding, removing, and checking out items
 
      public void addProductToCart(CartItem cartItem) {
         try (Session session = sessionFactory.openSession()) {

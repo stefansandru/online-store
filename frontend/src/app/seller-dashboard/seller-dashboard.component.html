@@ -120,16 +120,4 @@
     </table>
     <div *ngIf="!products.length && !loading">No products found.</div>
 
-    <button (click)="submitAdd('test', 'desc', '1', '1', '1')">
-        Test Add (Direct Call)
-    </button>
-
-    <button
-        (click)="
-            selectedProduct = products[0];
-            submitEdit('edited', 'desc', '2', '2')
-        "
-    >
-        Test Edit (Direct Call)
-    </button>
 </div>

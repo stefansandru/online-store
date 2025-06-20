@@ -5,12 +5,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import model.Category;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CategoryRepository {
     private final SessionFactory sessionFactory;
 
-    public CategoryRepository(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public CategoryRepository() {
+        this.sessionFactory = persistance.utils.HibernateUtil.getSessionFactory();
     }
 
     public List<Category> getAll() {
