@@ -6,14 +6,6 @@ import { Category } from '../models/category';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 
-export interface ProductCreateDTO {
-    name: string;
-    description: string;
-    price: number;
-    stock: number;
-    categoryName: string;
-}
-
 @Component({
     selector: 'app-seller-dashboard',
     templateUrl: './seller-dashboard.component.html',

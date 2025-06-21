@@ -3,13 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './models/product';
 
-export interface ProductCreateDTO {
-    name: string;
-    description: string;
-    price: number;
-    stock: number;
-    categoryName: string;
-}
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
