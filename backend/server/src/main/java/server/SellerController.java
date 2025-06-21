@@ -9,6 +9,7 @@ import utils.JwtUtil;
 import service.SellerService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -43,7 +44,7 @@ public class SellerController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDTO, HttpServletRequest request) {
+    public ResponseEntity<ProductDTO> addProduct(@Valid @RequestBody ProductDTO productDTO, HttpServletRequest request) {
         User seller = getAuthenticatedSeller(request);
         if (seller == null) return ResponseEntity.status(401).build();
         ProductDTO saved = sellerService.addProduct(productDTO, seller);
@@ -60,7 +61,7 @@ public class SellerController {
     }
 
     @PutMapping("/products/{id}")
-    public ResponseEntity<ProductDTO> editProduct(@PathVariable Long id, @RequestBody ProductDTO updatedProductDTO, HttpServletRequest request) {
+    public ResponseEntity<ProductDTO> editProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO updatedProductDTO, HttpServletRequest request) {
         User seller = getAuthenticatedSeller(request);
         if (seller == null) return ResponseEntity.status(401).build();
         ProductDTO updated = sellerService.editProduct(id, updatedProductDTO, seller);
