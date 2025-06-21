@@ -80,7 +80,8 @@ export class SellerDashboardComponent implements OnInit {
             (cat) => cat.id === Number(categoryId),
         );
         if (!selectedCategory) return;
-        const product: ProductCreateDTO = {
+        const product: Product = {
+            id: 0,
             name,
             description,
             price: Number(price),

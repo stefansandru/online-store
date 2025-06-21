@@ -25,7 +25,7 @@ export class ProductService {
         return this.http.get<Product[]>(this.apiUrl);
     }
 
-    addProduct(product: ProductCreateDTO): Observable<Product> {
+    addProduct(product: Product): Observable<Product> {
         console.log('ProductService.addProduct called with:', product);
         return this.http.post<Product>(this.apiUrl, product);
     }

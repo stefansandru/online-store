@@ -24,7 +24,6 @@ public class SellerController {
         this.sellerService = sellerService;
     }
 
-    // Helper to extract seller from JWT
     private User getAuthenticatedSeller(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
