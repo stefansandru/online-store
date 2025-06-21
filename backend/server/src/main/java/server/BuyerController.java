@@ -56,6 +56,7 @@ public class BuyerController {
 
     @PostMapping("/cart/add")
     public ResponseEntity<?> addProductToCart(@RequestParam int productId, @RequestParam int quantity, HttpServletRequest request) {
+        System.out.println();
         System.out.println("Adding product to cart: " + productId + " x " + quantity);
         Buyer buyer = getAuthenticatedBuyer(request);
         if (buyer == null) return ResponseEntity.status(401).build();

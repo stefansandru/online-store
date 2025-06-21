@@ -22,8 +22,6 @@ public class ProductDTO {
     @NotBlank
     private String categoryName;
 
-    // getters and setters
-
     public int getId() {
         return id;
     }

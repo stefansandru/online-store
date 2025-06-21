@@ -2,11 +2,11 @@ package service;
 
 import model.*;
 import model.dto.ProductDTO;
-import model.dto.ProductMapper;
+import model.mappers.ProductMapper;
 import model.dto.CartItemDTO;
-import model.dto.CartItemMapper;
-import model.dto.OrderMapper;
-import model.dto.OrderItemMapper;
+import model.mappers.CartItemMapper;
+import model.mappers.OrderMapper;
+import model.mappers.OrderItemMapper;
 import persistance.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

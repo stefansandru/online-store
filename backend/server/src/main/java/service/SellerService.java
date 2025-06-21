@@ -4,7 +4,7 @@ import model.Category;
 import model.Product;
 import model.User;
 import model.dto.ProductDTO;
-import model.dto.ProductMapper;
+import model.mappers.ProductMapper;
 import persistance.CategoryRepository;
 import persistance.ProductRepository;
 import persistance.UserRepository;

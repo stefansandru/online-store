@@ -2,7 +2,7 @@ package service;
 
 import model.Category;
 import model.dto.CategoryDTO;
-import model.dto.CategoryMapper;
+import model.mappers.CategoryMapper;
 import persistance.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

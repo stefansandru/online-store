@@ -7,7 +7,6 @@ public class CartItemDTO {
     private int quantity;
     private double price;
 
-    // getters and setters
     public int getId() {
         return id;
     }
