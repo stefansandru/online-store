@@ -15,7 +15,6 @@ public class SQLiteIdentityColumnSupport extends IdentityColumnSupportImpl {
 
     @Override
     public String getIdentityColumnString(int type) {
-        // SQLite uses 'integer' for auto-increment primary keys
         return "integer";
     }
 }

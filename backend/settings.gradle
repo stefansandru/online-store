@@ -1,6 +1,4 @@
 rootProject.name = 'online-store'
 include 'model'
 include 'server'
-include 'fxClient'
 include 'persistance'
-include 'services'

@@ -6,8 +6,6 @@ import org.hibernate.dialect.identity.IdentityColumnSupport;
 public class SQLiteDialect extends Dialect {
     public SQLiteDialect() {
         super();
-        // No need to register column types in Hibernate 6+
-        // If you need to override mappings, do so via methods, not registration.
     }
 
     @Override
