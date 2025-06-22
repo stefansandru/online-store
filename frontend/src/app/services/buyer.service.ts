@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Product } from './models/product';
-import { Seller } from './models/seller';
-import { CartItem } from './models/cart-item';
+import { Product } from '../models/product';
+import { Seller } from '../models/seller';
+import { CartItem } from '../models/cart-item';
 
 @Injectable({ providedIn: 'root' })
 export class BuyerService {

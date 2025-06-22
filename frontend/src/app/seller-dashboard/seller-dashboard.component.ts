@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-seller-dashboard',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth.service';
-import { ModeratorService } from '../moderator.service';
+import { AuthService } from '../services/auth.service';
+import { ModeratorService } from '../services/moderator.service';
 import { Seller } from '../models/seller';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';

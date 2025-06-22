@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BuyerService } from '../buyer.service';
+import { BuyerService } from '../services/buyer.service';
 import { Product } from '../models/product';
 import { CommonModule } from '@angular/common';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
 import { CartItem } from '../models/cart-item';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
