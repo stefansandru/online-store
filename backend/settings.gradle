@@ -1,4 +1,4 @@
-rootProject.name = 'emag'
+rootProject.name = 'online-store'
 include 'model'
 include 'server'
 include 'fxClient'
