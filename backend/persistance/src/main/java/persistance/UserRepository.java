@@ -14,12 +14,10 @@ import java.util.List;
 public class UserRepository {
     private final SessionFactory sessionFactory;
 
-    // no-args constructor uses your HibernateUtil
     public UserRepository() {
         this.sessionFactory = HibernateUtil.getSessionFactory();
     }
 
-    // keep this if you still want to support manual injection
     public UserRepository(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
