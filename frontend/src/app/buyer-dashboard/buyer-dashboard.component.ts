@@ -45,10 +45,7 @@ export class BuyerDashboardComponent implements OnInit {
             },
             error: (err) => {
                 console.error('Failed to load products:', err);
-            },
-            complete: () => {
-                console.log('Product loading completed');
-            },
+            }
         });
     }
 

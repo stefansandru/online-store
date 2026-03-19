@@ -1,4 +1,4 @@
 rootProject.name = 'online-store'
 include 'model'
 include 'server'
-include 'persistance'
+include 'persistence'

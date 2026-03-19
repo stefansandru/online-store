@@ -43,11 +43,6 @@ export class ModeratorDashboardComponent implements OnInit {
                     ...s,
                     blocked: s.accountStatus === 'BLOCKED',
                 }));
-                if (this.sellers.length > 0) {
-                    console.log('First seller:', this.sellers[0]);
-                } else {
-                    console.log('No sellers received');
-                }
                 this.loading = false;
             },
             error: () => {

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
     "utils", 
     "server", 
     "service", 
-    "persistance",
+    "persistence",
     "model",
     "model.dto",
 })

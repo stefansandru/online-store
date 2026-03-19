@@ -1,4 +1,4 @@
-package persistance.utils;
+package persistence.utils;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

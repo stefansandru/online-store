@@ -9,8 +9,8 @@ import model.mappers.SellerMapper;
 import model.dto.CategoryDTO;
 import model.mappers.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import persistance.CategoryRepository;
-import persistance.UserRepository;
+import persistence.CategoryRepository;
+import persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

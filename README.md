@@ -13,7 +13,7 @@ The implementation covers core e-commerce functionality such as CRUD operations,
 online-store/
  ├─ backend/           # Multi-module Gradle build → REST API
  │   ├─ model/         # Pure JPA entities shared by all modules
- │   ├─ persistance/   # Repositories & custom SQLite dialect
+ │   ├─ persistence/   # Repositories & custom SQLite dialect
  │   └─ server/        # Spring-Boot web layer, JWT security, services, controllers
  │
  └─ frontend/          # Angular 17 SPA (Material + RxJS)

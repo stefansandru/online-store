@@ -19,7 +19,6 @@ export class ProductService {
     }
 
     addProduct(product: Product): Observable<Product> {
-        console.log('ProductService.addProduct called with:', product);
         return this.http.post<Product>(this.apiUrl, product);
     }
 

@@ -37,7 +37,6 @@ public class BuyerController {
 
     @GetMapping("/products")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        System.out.println("Getting all products");
         List<ProductDTO> productDTOs = buyerService.getAllProducts();
         return ResponseEntity.ok(productDTOs);
     }
@@ -56,8 +55,6 @@ public class BuyerController {
 
     @PostMapping("/cart/add")
     public ResponseEntity<?> addProductToCart(@RequestParam int productId, @RequestParam int quantity, HttpServletRequest request) {
-        System.out.println();
-        System.out.println("Adding product to cart: " + productId + " x " + quantity);
         Buyer buyer = getAuthenticatedBuyer(request);
         if (buyer == null) return ResponseEntity.status(401).build();
         buyerService.addProductToCart(buyer, productId, quantity);

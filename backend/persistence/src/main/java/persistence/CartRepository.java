@@ -1,4 +1,4 @@
-package persistance;
+package persistence;
 
 import model.Buyer;
 import model.CartItem;
@@ -15,7 +15,7 @@ public class CartRepository {
     private final SessionFactory sessionFactory;
 
     public CartRepository() {
-        this.sessionFactory = persistance.utils.HibernateUtil.getSessionFactory();
+        this.sessionFactory = persistence.utils.HibernateUtil.getSessionFactory();
     }
 
 

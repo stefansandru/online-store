@@ -24,9 +24,6 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/api/auth/login").permitAll()
-//                        .requestMatchers("/api/auth/**").permitAll()
-//                        .requestMatchers("/api/seller/**").hasRole("SELLER")
                         .anyRequest().permitAll() // Allow all other requests (e.g., static resources)
                 );
         return http.build();

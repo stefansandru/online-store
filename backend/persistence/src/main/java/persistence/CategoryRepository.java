@@ -1,4 +1,4 @@
-package persistance;
+package persistence;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +12,7 @@ public class CategoryRepository {
     private final SessionFactory sessionFactory;
 
     public CategoryRepository() {
-        this.sessionFactory = persistance.utils.HibernateUtil.getSessionFactory();
+        this.sessionFactory = persistence.utils.HibernateUtil.getSessionFactory();
     }
 
     public List<Category> getAll() {

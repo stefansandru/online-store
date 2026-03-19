@@ -7,7 +7,7 @@ import model.dto.CartItemDTO;
 import model.mappers.CartItemMapper;
 import model.mappers.OrderMapper;
 import model.mappers.OrderItemMapper;
-import persistance.*;
+import persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

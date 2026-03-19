@@ -5,9 +5,9 @@ import model.Product;
 import model.User;
 import model.dto.ProductDTO;
 import model.mappers.ProductMapper;
-import persistance.CategoryRepository;
-import persistance.ProductRepository;
-import persistance.UserRepository;
+import persistence.CategoryRepository;
+import persistence.ProductRepository;
+import persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

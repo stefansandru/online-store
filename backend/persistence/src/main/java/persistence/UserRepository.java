@@ -1,11 +1,11 @@
-package persistance;
+package persistence;
 
 import model.Seller;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import model.User;
-import persistance.utils.HibernateUtil;
+import persistence.utils.HibernateUtil;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

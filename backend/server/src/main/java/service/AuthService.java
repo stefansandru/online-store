@@ -1,7 +1,7 @@
 package service;
 
 import model.User;
-import persistance.UserRepository;
+import persistence.UserRepository;
 import utils.JwtUtil;
 import utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +20,7 @@ public class AuthService {
     }
 
     public String login(String username, String password) {
-        System.out.println(username);
         User user = userRepository.findByUsername(username);
-        System.out.println("User found: " + (user != null ? user.getUsername() : "null"));
         if (user != null && PasswordUtils.verifyPassword(password, user.getPasswordHash())) {
             String role = user.getClass().getSimpleName().toUpperCase();
             return jwtUtil.generateToken(user, role);
@@ -57,8 +55,6 @@ public class AuthService {
                 return false;
         }
 
-        System.out.println("Registering user: " + username + " with role: " + role + " id: " + user.getId());
-        System.out.println("Password hash: " + passwordHash);
         userRepository.save(user);
         return true;
     }
